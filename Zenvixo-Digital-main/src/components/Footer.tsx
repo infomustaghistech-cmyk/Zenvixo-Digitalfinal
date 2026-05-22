@@ -18,11 +18,18 @@ export default function Footer() {
               We are a team of passionate digital creators, designers, and developers dedicated to pushing the boundaries of what's possible in the digital industry.
             </p>
             <div className="flex gap-3">
-              {[Instagram, Twitter, Linkedin, Facebook].map((Icon, i) => (
-                <a key={i} href="#" className="w-8 h-8 border border-white/10 flex items-center justify-center text-white/60 hover:text-brand-yellow hover:border-brand-yellow transition-all">
-                  <Icon size={14} />
-                </a>
-              ))}
+              <a href="https://www.instagram.com/zenvixo_digital?igsh=MWxxc3NhYzJvOWhhdQ==" target="_blank" rel="noopener noreferrer" className="w-8 h-8 border border-white/10 flex items-center justify-center text-white/60 hover:text-brand-yellow hover:border-brand-yellow transition-all">
+                <Instagram size={14} />
+              </a>
+              <a href="#" className="w-8 h-8 border border-white/10 flex items-center justify-center text-white/60 hover:text-brand-yellow hover:border-brand-yellow transition-all">
+                <Twitter size={14} />
+              </a>
+              <a href="#" className="w-8 h-8 border border-white/10 flex items-center justify-center text-white/60 hover:text-brand-yellow hover:border-brand-yellow transition-all">
+                <Linkedin size={14} />
+              </a>
+              <a href="https://www.facebook.com/share/18yp1Zfary/" target="_blank" rel="noopener noreferrer" className="w-8 h-8 border border-white/10 flex items-center justify-center text-white/60 hover:text-brand-yellow hover:border-brand-yellow transition-all">
+                <Facebook size={14} />
+              </a>
             </div>
           </div>
           

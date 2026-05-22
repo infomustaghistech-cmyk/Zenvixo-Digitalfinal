@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { supabase } from '../supabaseClient';
-import { portfolioItems } from '../data/portfolioItems';
 
 const categories = [
   { id: 'graphic-designing', name: 'Graphic Designing' },
@@ -716,10 +715,7 @@ export default function Admin() {
           </h2>
 
           {(() => {
-            const allItems = [
-              ...portfolioItems.map((item: any) => ({ ...item, _source: 'static' })),
-              ...projects.map((item: any) => ({ ...item, _source: 'database' })),
-            ];
+            const allItems = projects;
 
             const hasItems = allItems.length > 0;
             if (!hasItems) return <p className="text-white/40">No projects uploaded yet.</p>;
@@ -728,33 +724,19 @@ export default function Admin() {
               <div className="space-y-10">
                 {categories.map((cat) => {
                   const catItems = allItems.filter(item => {
-                    if (item._source === 'database') {
-                      return getDropdownCategory(item) === cat.id;
-                    }
-                    // static items
-                    if (item.category === cat.id) return true;
-                    if (cat.id === '2d' || cat.id === '3d' || cat.id === '2d-animation' || cat.id === '3d-animation') {
-                      return item.category === 'digital-art' && item.subCategory === cat.id;
-                    }
-                    return false;
+                    return getDropdownCategory(item) === cat.id;
                   });
                   if (catItems.length === 0) return null;
-
-                  const staticCount = catItems.filter(i => i._source === 'static').length;
-                  const dbCount = catItems.filter(i => i._source === 'database').length;
 
                   return (
                     <div key={cat.id} className="space-y-4">
                       <h3 className="text-lg font-display font-bold text-brand-yellow uppercase tracking-wider flex items-center gap-3">
                         <span className="h-2 w-2 rounded-full bg-brand-yellow animate-pulse" />
                         {cat.name} ({catItems.length})
-                        <span className="text-[9px] text-white/30 font-normal normal-case tracking-normal">
-                          {staticCount > 0 && `${staticCount} static`}{staticCount > 0 && dbCount > 0 && ' · '}{dbCount > 0 && `${dbCount} from database`}
-                        </span>
                       </h3>
                       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
                         {catItems.map((proj) => (
-                          <div key={`${proj._source}-${proj.id}`} className={`bg-black/50 border rounded-xl overflow-hidden flex flex-col justify-between hover:border-white/20 transition-all duration-300 ${proj._source === 'database' ? 'border-white/10' : 'border-white/5'}`}>
+                          <div key={proj.id} className="bg-black/50 border border-white/10 rounded-xl overflow-hidden flex flex-col justify-between hover:border-white/20 transition-all duration-300">
                             <div>
                               <div className="relative aspect-[4/3] bg-black flex items-center justify-center">
                                 {proj.media_type === 'video' && proj.video_url && !proj.video_url?.includes('youtube.com') && !proj.video_url?.includes('youtu.be') ? (
@@ -780,16 +762,6 @@ export default function Admin() {
                                   />
                                 )}
                                 <div className="absolute top-2 right-2 flex gap-1.5">
-                                  {proj._source === 'static' && (
-                                    <span className="bg-emerald-500/20 text-emerald-400 text-[9px] px-2 py-0.5 rounded border border-emerald-500/20 uppercase font-bold">
-                                      Static
-                                    </span>
-                                  )}
-                                  {proj._source === 'database' && (
-                                    <span className="bg-blue-500/20 text-blue-400 text-[9px] px-2 py-0.5 rounded border border-blue-500/20 uppercase font-bold">
-                                      Database
-                                    </span>
-                                  )}
                                   {proj.media_type && proj.media_type !== 'image' && (
                                     <span className="bg-black/60 text-white/80 text-[9px] px-2 py-0.5 rounded border border-white/10 uppercase">
                                       {proj.media_type}
@@ -802,24 +774,22 @@ export default function Admin() {
                                 <p className="text-white/40 text-xs mt-1 line-clamp-2">{proj.description}</p>
                               </div>
                             </div>
-                            {proj._source === 'database' && (
-                              <div className="p-4 pt-0 flex gap-2">
-                                <button
-                                  type="button"
-                                  onClick={() => startEditing(proj)}
-                                  className="flex-1 bg-white/10 hover:bg-brand-yellow text-white hover:text-brand-black border border-white/10 font-display font-bold text-[10px] uppercase tracking-widest py-2 rounded-lg transition-all"
-                                >
-                                  Edit
-                                </button>
-                                <button
-                                  type="button"
-                                  onClick={() => handleDeleteProject(proj.id, proj.image, proj.video_url)}
-                                  className="flex-1 bg-red-500/10 hover:bg-red-500 text-red-400 hover:text-white border border-red-500/20 font-display font-bold text-[10px] uppercase tracking-widest py-2 rounded-lg transition-all"
-                                >
-                                  Delete
-                                </button>
-                              </div>
-                            )}
+                            <div className="p-4 pt-0 flex gap-2">
+                              <button
+                                type="button"
+                                onClick={() => startEditing(proj)}
+                                className="flex-1 bg-white/10 hover:bg-brand-yellow text-white hover:text-brand-black border border-white/10 font-display font-bold text-[10px] uppercase tracking-widest py-2 rounded-lg transition-all"
+                              >
+                                Edit
+                              </button>
+                              <button
+                                type="button"
+                                onClick={() => handleDeleteProject(proj.id, proj.image, proj.video_url)}
+                                className="flex-1 bg-red-500/10 hover:bg-red-500 text-red-400 hover:text-white border border-red-500/20 font-display font-bold text-[10px] uppercase tracking-widest py-2 rounded-lg transition-all"
+                              >
+                                Delete
+                              </button>
+                            </div>
                           </div>
                         ))}
                       </div>

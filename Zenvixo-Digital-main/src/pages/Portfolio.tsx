@@ -2,7 +2,6 @@ import { useState, useRef, useEffect } from 'react';
 import { supabase } from '../supabaseClient';
 import { motion, AnimatePresence } from 'motion/react';
 import { ChevronLeft, ChevronRight, ExternalLink, Play } from 'lucide-react';
-import { portfolioItems } from '../data/portfolioItems';
 
 const categories = [
   { id: 'graphic-designing', name: 'Graphic Designing' },
@@ -54,7 +53,7 @@ export default function Portfolio() {
     fetchProjects();
   }, []);
 
-  const allItems = [...portfolioItems, ...dbProjects];
+  const allItems = dbProjects;
 
   const filteredItems = allItems.filter(item => {
     if (item.category !== activeCategory) return false;
