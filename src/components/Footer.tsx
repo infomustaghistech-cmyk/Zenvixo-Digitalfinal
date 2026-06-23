@@ -1,4 +1,5 @@
 import { Instagram, Twitter, Linkedin, Facebook } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 export default function Footer() {
   return (
@@ -18,16 +19,16 @@ export default function Footer() {
               We are a team of passionate digital creators, designers, and developers dedicated to pushing the boundaries of what's possible in the digital industry.
             </p>
             <div className="flex gap-3">
-              <a href="https://www.instagram.com/zenvixo_digital?igsh=MWxxc3NhYzJvOWhhdQ==" target="_blank" rel="noopener noreferrer" className="w-8 h-8 border border-white/10 flex items-center justify-center text-white/60 hover:text-brand-yellow hover:border-brand-yellow transition-all">
+              <a href="https://www.instagram.com/zenvixo.tech?igsh=amwycnI0dTdqNzA0" target="_blank" rel="noopener noreferrer" className="w-8 h-8 border border-white/10 flex items-center justify-center text-white/60 hover:text-brand-yellow hover:border-brand-yellow transition-all">
                 <Instagram size={14} />
               </a>
-              <a href="#" className="w-8 h-8 border border-white/10 flex items-center justify-center text-white/60 hover:text-brand-yellow hover:border-brand-yellow transition-all">
+              <a href="https://x.com/Zenvixodigital" target="_blank" rel="noopener noreferrer" className="w-8 h-8 border border-white/10 flex items-center justify-center text-white/60 hover:text-brand-yellow hover:border-brand-yellow transition-all">
                 <Twitter size={14} />
               </a>
-              <a href="#" className="w-8 h-8 border border-white/10 flex items-center justify-center text-white/60 hover:text-brand-yellow hover:border-brand-yellow transition-all">
+              <a href="https://www.linkedin.com/company/zenvixo-digital/" target="_blank" rel="noopener noreferrer" className="w-8 h-8 border border-white/10 flex items-center justify-center text-white/60 hover:text-brand-yellow hover:border-brand-yellow transition-all">
                 <Linkedin size={14} />
               </a>
-              <a href="https://www.facebook.com/share/18yp1Zfary/" target="_blank" rel="noopener noreferrer" className="w-8 h-8 border border-white/10 flex items-center justify-center text-white/60 hover:text-brand-yellow hover:border-brand-yellow transition-all">
+              <a href="https://www.facebook.com/share/1FSXJAdXpE/" target="_blank" rel="noopener noreferrer" className="w-8 h-8 border border-white/10 flex items-center justify-center text-white/60 hover:text-brand-yellow hover:border-brand-yellow transition-all">
                 <Facebook size={14} />
               </a>
             </div>
@@ -59,8 +60,8 @@ export default function Footer() {
         <div className="pt-8 border-t border-white/5 flex flex-col md:row justify-between items-center gap-4 text-[9px] tracking-widest text-white/30 uppercase">
           <p>© 2026 ZENVIXO DIGITAL. ALL RIGHTS RESERVED.</p>
           <div className="flex gap-6">
-            <a href="#" className="hover:text-brand-white">Privacy Policy</a>
-            <a href="#" className="hover:text-brand-white">Terms</a>
+            <Link to="/privacy-policy" className="hover:text-brand-white">Privacy Policy</Link>
+            <Link to="/terms" className="hover:text-brand-white">Terms</Link>
           </div>
         </div>
       </div>

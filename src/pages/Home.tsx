@@ -111,7 +111,7 @@ export default function Home() {
         <div className="bg-noise absolute inset-0 pointer-events-none" />
         
         <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <div className="flex flex-col md:row justify-between items-end gap-6 mb-16">
+          <div className="flex flex-col md:flex-row justify-between items-start gap-6 mb-16">
             <div>
               <span className="text-brand-yellow font-display font-bold text-[10px] uppercase tracking-widest block mb-4">Our Expertise</span>
               <h2 className="font-display font-bold text-3xl md:text-5xl text-brand-white tracking-tighter">
